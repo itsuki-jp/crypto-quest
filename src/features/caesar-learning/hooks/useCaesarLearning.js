@@ -47,14 +47,13 @@ const caesarDecipher = (text, shift) => {
 };
 
 export const useCaesarLearning = () => {
-  // 現在のステップ (1: 理解, 2: 暗号化体験, 3: 復号化, 4: チャレンジ)
+  // 現在のステップ (1: 理解, 2: 復号化, 3: チャレンジ)
   const [currentStep, setCurrentStep] = useState(1);
   const [currentProblemIndex, setCurrentProblemIndex] = useState(0);
   
   // 入力値の状態
-  const [userShift, setUserShift] = useState('');
-  const [userCiphertext, setUserCiphertext] = useState('');
   const [userPlaintext, setUserPlaintext] = useState('');
+  const [helperShift, setHelperShift] = useState('');
   const [customText, setCustomText] = useState('');
   const [customShift, setCustomShift] = useState('');
   
@@ -65,9 +64,7 @@ export const useCaesarLearning = () => {
   const [showAlphabet, setShowAlphabet] = useState(false);
   
   // 正解チェック状態
-  const [encryptionCorrect, setEncryptionCorrect] = useState(false);
   const [decryptionCorrect, setDecryptionCorrect] = useState(false);
-  const [shiftCorrect, setShiftCorrect] = useState(false);
 
   const currentProblem = CAESAR_PROBLEMS[currentProblemIndex];
 
@@ -81,25 +78,12 @@ export const useCaesarLearning = () => {
     return { normal, shifted };
   }, []);
 
-  // シフト値チェック
-  const checkShift = useCallback(() => {
-    const shift = parseInt(userShift);
-    if (shift === currentProblem.shift) {
-      setShiftCorrect(true);
-      return true;
-    }
-    return false;
-  }, [userShift, currentProblem.shift]);
-
-  // 暗号化チェック
-  const checkEncryption = useCallback(() => {
-    const result = caesarCipher(currentProblem.plaintext, currentProblem.shift);
-    if (userCiphertext.toUpperCase() === result) {
-      setEncryptionCorrect(true);
-      return true;
-    }
-    return false;
-  }, [userCiphertext, currentProblem]);
+  // ヘルパーツールでシフト結果を表示
+  const getHelperResult = useCallback(() => {
+    if (!helperShift || !currentProblem.ciphertext) return '';
+    const shift = parseInt(helperShift);
+    return caesarDecipher(currentProblem.ciphertext, shift);
+  }, [helperShift, currentProblem.ciphertext]);
 
   // 復号化チェック
   const checkDecryption = useCallback(() => {
@@ -136,15 +120,12 @@ export const useCaesarLearning = () => {
 
   // 現在の問題をリセット
   const resetCurrentProblem = useCallback(() => {
-    setUserShift('');
-    setUserCiphertext('');
     setUserPlaintext('');
+    setHelperShift('');
     setShowHint(false);
     setShowAnswer(false);
     setShowSuccess(false);
-    setEncryptionCorrect(false);
     setDecryptionCorrect(false);
-    setShiftCorrect(false);
   }, []);
 
   // 全体リセット
@@ -170,24 +151,20 @@ export const useCaesarLearning = () => {
     currentStep,
     currentProblem,
     currentProblemIndex,
-    userShift,
-    userCiphertext,
     userPlaintext,
+    helperShift,
     customText,
     customShift,
     showHint,
     showAnswer,
     showSuccess,
     showAlphabet,
-    encryptionCorrect,
     decryptionCorrect,
-    shiftCorrect,
     
     // Setters
     setCurrentStep,
-    setUserShift,
-    setUserCiphertext,
     setUserPlaintext,
+    setHelperShift,
     setCustomText,
     setCustomShift,
     setShowHint,
@@ -196,9 +173,8 @@ export const useCaesarLearning = () => {
     setShowAlphabet,
     
     // Actions
-    checkShift,
-    checkEncryption,
     checkDecryption,
+    getHelperResult,
     encryptCustomText,
     nextProblem,
     previousProblem,

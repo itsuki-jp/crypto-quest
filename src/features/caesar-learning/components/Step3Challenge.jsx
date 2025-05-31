@@ -1,7 +1,7 @@
 import React from 'react';
 import { Trophy, Sparkles, ArrowLeft, ArrowRight, RotateCcw } from 'lucide-react';
 
-const Step4Challenge = ({ 
+export const Step3Challenge = ({ 
   currentProblem,
   currentProblemIndex,
   totalProblems,
@@ -13,7 +13,6 @@ const Step4Challenge = ({
   nextProblem,
   previousProblem,
   resetAll,
-  caesarCipher,
   caesarDecipher
 }) => {
   const customResult = encryptCustomText();
@@ -167,5 +166,3 @@ const Step4Challenge = ({
     </div>
   );
 };
-
-export default Step4Challenge;

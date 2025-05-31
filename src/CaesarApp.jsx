@@ -1,4 +1,3 @@
-import React from "react";
 import { useDarkMode } from "./features/ui/hooks/useDarkMode.js";
 import { useCaesarLearning } from "./features/caesar-learning/hooks/useCaesarLearning.js";
 
@@ -7,9 +6,9 @@ import StepIndicator from "./features/ui/components/StepIndicator.jsx";
 
 // Learning Step Components
 import Step1Understanding from "./features/caesar-learning/components/Step1Understanding.jsx";
-import Step2Encryption from "./features/caesar-learning/components/Step2Encryption.jsx";
-import Step3Decryption from "./features/caesar-learning/components/Step3Decryption.jsx";
-import Step4Challenge from "./features/caesar-learning/components/Step4Challenge.jsx";
+import { Step2Decryption } from "./features/caesar-learning/components/Step2Decryption.jsx";
+import { Step3Challenge } from "./features/caesar-learning/components/Step3Challenge.jsx";
+
 
 const CaesarApp = () => {
   const { isDarkMode, toggleDarkMode } = useDarkMode();
@@ -18,42 +17,37 @@ const CaesarApp = () => {
     currentStep,
     currentProblem,
     currentProblemIndex,
-    userShift,
-    userCiphertext,
     userPlaintext,
+    helperShift,
     customText,
     customShift,
     showHint,
     showAlphabet,
-    encryptionCorrect,
     decryptionCorrect,
-    shiftCorrect,
     totalProblems,
-
+    
     // Setters
     setCurrentStep,
-    setUserShift,
-    setUserCiphertext,
     setUserPlaintext,
+    setHelperShift,
     setCustomText,
     setCustomShift,
     setShowHint,
     setShowAlphabet,
-
+    
     // Actions
-    checkShift,
-    checkEncryption,
     checkDecryption,
+    getHelperResult,
     encryptCustomText,
     nextProblem,
     previousProblem,
     resetAll,
     handleEnterKey,
     generateAlphabet,
-
+    
     // Utils
     caesarCipher,
-    caesarDecipher,
+    caesarDecipher
   } = useCaesarLearning();
 
   return (
@@ -75,20 +69,16 @@ const CaesarApp = () => {
                 </p>
               </div>
             </div>
-
+            
             <div className="flex items-center gap-4">
               <button
                 onClick={toggleDarkMode}
                 className="glass p-3 rounded-2xl transition-all duration-300 hover:scale-110 border border-blue-200/50 dark:border-blue-500/30 group"
-                title={
-                  isDarkMode
-                    ? "ライトモードに切り替え"
-                    : "ダークモードに切り替え"
-                }
+                title={isDarkMode ? 'ライトモードに切り替え' : 'ダークモードに切り替え'}
               >
-                {isDarkMode ? "☀️" : "🌙"}
+                {isDarkMode ? '☀️' : '🌙'}
               </button>
-
+              
               <button
                 onClick={resetAll}
                 className="glass px-4 py-2 rounded-2xl transition-all duration-300 hover:scale-105 border border-blue-200/50 dark:border-blue-500/30 text-gray-700 dark:text-gray-300"
@@ -100,28 +90,22 @@ const CaesarApp = () => {
         </div>
 
         {/* Step Progress */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-          <StepIndicator
-            step={1}
-            isActive={currentStep === 1}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+          <StepIndicator 
+            step={1} 
+            isActive={currentStep === 1} 
             isCompleted={currentStep > 1}
             title="理解"
           />
-          <StepIndicator
-            step={2}
-            isActive={currentStep === 2}
-            isCompleted={encryptionCorrect && shiftCorrect}
-            title="暗号化"
-          />
-          <StepIndicator
-            step={3}
-            isActive={currentStep === 3}
+          <StepIndicator 
+            step={2} 
+            isActive={currentStep === 2} 
             isCompleted={decryptionCorrect}
             title="復号化"
           />
-          <StepIndicator
-            step={4}
-            isActive={currentStep === 4}
+          <StepIndicator 
+            step={3} 
+            isActive={currentStep === 3} 
             isCompleted={false}
             title="チャレンジ"
           />
@@ -129,7 +113,7 @@ const CaesarApp = () => {
 
         {/* Learning Steps */}
         {currentStep === 1 && (
-          <Step1Understanding
+          <Step1Understanding 
             setCurrentStep={setCurrentStep}
             showAlphabet={showAlphabet}
             setShowAlphabet={setShowAlphabet}
@@ -138,40 +122,24 @@ const CaesarApp = () => {
         )}
 
         {currentStep === 2 && (
-          <Step2Encryption
+          <Step2Decryption 
             currentProblem={currentProblem}
-            userShift={userShift}
-            setUserShift={setUserShift}
-            userCiphertext={userCiphertext}
-            setUserCiphertext={setUserCiphertext}
-            checkShift={checkShift}
-            checkEncryption={checkEncryption}
-            shiftCorrect={shiftCorrect}
-            encryptionCorrect={encryptionCorrect}
+            userPlaintext={userPlaintext}
+            setUserPlaintext={setUserPlaintext}
+            helperShift={helperShift}
+            setHelperShift={setHelperShift}
+            checkDecryption={checkDecryption}
+            decryptionCorrect={decryptionCorrect}
             showHint={showHint}
             setShowHint={setShowHint}
             setCurrentStep={setCurrentStep}
             handleEnterKey={handleEnterKey}
-            caesarCipher={caesarCipher}
-            generateAlphabet={generateAlphabet}
+            getHelperResult={getHelperResult}
           />
         )}
 
         {currentStep === 3 && (
-          <Step3Decryption
-            currentProblem={currentProblem}
-            userPlaintext={userPlaintext}
-            setUserPlaintext={setUserPlaintext}
-            checkDecryption={checkDecryption}
-            decryptionCorrect={decryptionCorrect}
-            setCurrentStep={setCurrentStep}
-            handleEnterKey={handleEnterKey}
-            caesarDecipher={caesarDecipher}
-          />
-        )}
-
-        {currentStep === 4 && (
-          <Step4Challenge
+          <Step3Challenge 
             currentProblem={currentProblem}
             currentProblemIndex={currentProblemIndex}
             totalProblems={totalProblems}
