@@ -108,24 +108,28 @@ const HomePage = () => {
                 </div>
               </Link>
 
-              <div className="glass p-6 rounded-2xl border border-gray-200/50 dark:border-gray-600/30 opacity-60">
+              {/* AES暗号学習カード */}
+              <Link 
+                to="/learning/aes"
+                className="group block glass p-6 rounded-2xl border border-blue-200/50 dark:border-blue-500/30 hover:scale-105 hover:shadow-xl transition-all duration-300 interactive"
+              >
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-4">
-                    <div className="w-10 h-10 bg-gradient-to-r from-gray-400 to-gray-500 rounded-lg flex items-center justify-center">
-                      <Key className="text-white" size={20} />
+                    <div className="w-10 h-10 bg-gradient-to-r from-indigo-500 to-purple-600 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-lg">🛡️</span>
                     </div>
                     <div>
-                      <h3 className="text-xl font-semibold text-gray-500 dark:text-gray-400">
+                      <h3 className="text-xl font-semibold text-gray-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
                         AES暗号
                       </h3>
-                      <p className="text-sm text-gray-400 dark:text-gray-500">
-                        現代の共通鍵暗号 - 準備中
+                      <p className="text-sm text-gray-600 dark:text-gray-400">
+                        現代暗号の標準を学ぼう
                       </p>
                     </div>
                   </div>
-                  <Sparkles className="text-gray-300" size={20} />
+                  <ArrowRight className="text-gray-400 group-hover:text-indigo-500 group-hover:translate-x-1 transition-all" size={20} />
                 </div>
-              </div>
+              </Link>
             </div>
           </div>
 
