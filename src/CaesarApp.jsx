@@ -19,8 +19,6 @@ const CaesarApp = () => {
     currentProblemIndex,
     userPlaintext,
     helperShift,
-    customText,
-    customShift,
     showHint,
     showAlphabet,
     decryptionCorrect,
@@ -30,24 +28,16 @@ const CaesarApp = () => {
     setCurrentStep,
     setUserPlaintext,
     setHelperShift,
-    setCustomText,
-    setCustomShift,
     setShowHint,
     setShowAlphabet,
     
     // Actions
     checkDecryption,
     getHelperResult,
-    encryptCustomText,
     nextProblem,
-    previousProblem,
     resetAll,
     handleEnterKey,
-    generateAlphabet,
-    
-    // Utils
-    caesarCipher,
-    caesarDecipher
+    generateAlphabet
   } = useCaesarLearning();
 
   return (
@@ -90,7 +80,7 @@ const CaesarApp = () => {
         </div>
 
         {/* Step Progress */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
           <StepIndicator 
             step={1} 
             isActive={currentStep === 1} 
@@ -102,12 +92,6 @@ const CaesarApp = () => {
             isActive={currentStep === 2} 
             isCompleted={decryptionCorrect}
             title="復号化"
-          />
-          <StepIndicator 
-            step={3} 
-            isActive={currentStep === 3} 
-            isCompleted={false}
-            title="チャレンジ"
           />
         </div>
 
@@ -124,6 +108,8 @@ const CaesarApp = () => {
         {currentStep === 2 && (
           <Step2Decryption 
             currentProblem={currentProblem}
+            currentProblemIndex={currentProblemIndex}
+            totalProblems={totalProblems}
             userPlaintext={userPlaintext}
             setUserPlaintext={setUserPlaintext}
             helperShift={helperShift}
@@ -135,24 +121,7 @@ const CaesarApp = () => {
             setCurrentStep={setCurrentStep}
             handleEnterKey={handleEnterKey}
             getHelperResult={getHelperResult}
-          />
-        )}
-
-        {currentStep === 3 && (
-          <Step3Challenge 
-            currentProblem={currentProblem}
-            currentProblemIndex={currentProblemIndex}
-            totalProblems={totalProblems}
-            customText={customText}
-            setCustomText={setCustomText}
-            customShift={customShift}
-            setCustomShift={setCustomShift}
-            encryptCustomText={encryptCustomText}
             nextProblem={nextProblem}
-            previousProblem={previousProblem}
-            resetAll={resetAll}
-            caesarCipher={caesarCipher}
-            caesarDecipher={caesarDecipher}
           />
         )}
       </div>

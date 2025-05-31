@@ -95,7 +95,7 @@ const Step1Understanding = ({
             onClick={() => setCurrentStep(2)}
             className="bg-gradient-to-r from-blue-600 to-blue-700 text-white px-8 py-3 rounded-2xl hover:from-blue-700 hover:to-blue-800 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105"
           >
-            暗号化を体験する
+            復号化を体験する
             <ArrowRight size={20} />
           </button>
         </div>

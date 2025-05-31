@@ -3,6 +3,8 @@ import { Unlock, Lightbulb, ArrowRight, Calculator } from 'lucide-react';
 
 export const Step2Decryption = ({ 
   currentProblem,
+  currentProblemIndex,
+  totalProblems,
   userPlaintext,
   setUserPlaintext,
   helperShift,
@@ -13,7 +15,8 @@ export const Step2Decryption = ({
   setShowHint,
   setCurrentStep,
   handleEnterKey,
-  getHelperResult
+  getHelperResult,
+  nextProblem
 }) => {
   const helperResult = getHelperResult();
 
@@ -120,20 +123,42 @@ export const Step2Decryption = ({
           </div>
         </div>
 
-        {/* 成功メッセージと次のステップ */}
+        {/* 成功メッセージ - 学習完了 */}
         {decryptionCorrect && (
           <div className="bg-gradient-to-r from-green-50 to-blue-50 dark:from-green-900/20 dark:to-blue-900/20 rounded-2xl p-6 text-center">
-            <h4 className="text-xl font-semibold text-green-800 dark:text-green-200 mb-2">🎉 素晴らしい！</h4>
+            <div className="text-6xl mb-4">🏆</div>
+            <h4 className="text-2xl font-bold text-gray-800 dark:text-gray-200 mb-2">🎉 シーザー暗号をマスターしました！</h4>
             <p className="text-green-700 dark:text-green-300 mb-4">
-              正解は「{currentProblem.plaintext}」でした。シーザー暗号の復号化をマスターしましたね！
+              正解は「{currentProblem.plaintext}」でした。暗号化と復号化の基本原理を理解できました。<br/>
+              この知識は現代の暗号技術の理解にも役立ちます。
             </p>
-            <button
-              onClick={() => setCurrentStep(3)}
-              className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-8 py-3 rounded-2xl hover:from-purple-700 hover:to-purple-800 transition-all duration-300 flex items-center gap-2 shadow-lg hover:shadow-xl transform hover:scale-105 mx-auto"
-            >
-              さらに練習する
-              <ArrowRight size={20} />
-            </button>
+            <div className="flex justify-center gap-4">
+              <button
+                onClick={() => {
+                  // 次の問題に移動してステップ1に戻る
+                  const nextIndex = (currentProblemIndex + 1) % totalProblems;
+                  if (nextIndex !== currentProblemIndex) {
+                    // nextProblem関数を呼び出してからステップをリセット
+                    window.setTimeout(() => {
+                      setUserPlaintext('');
+                      setHelperShift('');
+                      setShowHint(false);
+                      setCurrentStep(1);
+                    }, 100);
+                  } else {
+                    // 同じ問題の場合はステップ1に戻すだけ
+                    setCurrentStep(1);
+                  }
+                  // 親コンポーネントから渡された関数を使用
+                  if (typeof nextProblem === 'function') {
+                    nextProblem();
+                  }
+                }}
+                className="flex items-center gap-2 bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                🔄 別の問題に挑戦
+              </button>
+            </div>
           </div>
         )}
       </div>
