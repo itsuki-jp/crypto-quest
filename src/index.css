@@ -104,6 +104,45 @@ body:not(.dark) .bg-gradient-to-r * {
   color: white !important;
 }
 
+/* Dark mode text colors */
+html.dark body * {
+  color: rgb(248 250 252 / var(--tw-text-opacity)) !important;
+}
+
+html.dark body .bg-gradient-to-r * {
+  color: white !important;
+}
+
+/* High contrast text for dark mode */
+html.dark body h1,
+html.dark body h2,
+html.dark body h3,
+html.dark body h4,
+html.dark body .text-xl,
+html.dark body .text-2xl,
+html.dark body .text-3xl,
+html.dark body .text-4xl,
+html.dark body .text-5xl {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Enhance number visibility in dark mode */
+html.dark body .text-blue-400,
+html.dark body .text-blue-300,
+html.dark body .text-cyan-400,
+html.dark body .text-cyan-300 {
+  color: #60a5fa !important;
+  font-weight: 600;
+}
+
+/* Red numbers for cipher text */
+html.dark body .text-red-400,
+html.dark body .text-red-300 {
+  color: #f87171 !important;
+  font-weight: 600;
+}
+
 /* Specific overrides for branded colors */
 body:not(.dark) .bg-gradient-to-r.from-blue-600 *,
 body:not(.dark) .bg-gradient-to-r.from-blue-500 *,
@@ -115,9 +154,76 @@ body:not(.dark) .bg-gradient-to-r.from-indigo-500 * {
   color: white !important;
 }
 
+html.dark body .bg-gradient-to-r.from-blue-600 *,
+html.dark body .bg-gradient-to-r.from-blue-500 *,
+html.dark body .bg-gradient-to-r.from-green-500 *,
+html.dark body .bg-gradient-to-r.from-purple-500 *,
+html.dark body .bg-gradient-to-r.from-red-500 *,
+html.dark body .bg-gradient-to-r.from-orange-500 *,
+html.dark body .bg-gradient-to-r.from-indigo-500 * {
+  color: white !important;
+}
+
 /* Preserve gradient text */
 body:not(.dark) .bg-clip-text {
   color: transparent !important;
+}
+
+html.dark body .bg-clip-text {
+  color: transparent !important;
+}
+
+/* Button text visibility fixes */
+body button:not(.bg-gradient-to-r) {
+  color: rgb(17 24 39) !important;
+}
+
+html.dark body button:not(.bg-gradient-to-r) {
+  color: rgb(248 250 252) !important;
+  font-weight: 500;
+}
+
+/* Hint button improvements for dark mode */
+html.dark body button.opacity-70,
+html.dark body button[class*="opacity"] {
+  opacity: 1 !important;
+  background: rgba(59, 130, 246, 0.8) !important;
+  color: white !important;
+}
+
+html.dark body button.opacity-70:hover,
+html.dark body button[class*="opacity"]:hover {
+  background: rgba(59, 130, 246, 1) !important;
+  transform: scale(1.05);
+}
+
+/* Glass button specific fixes */
+body .glass button:not(.bg-gradient-to-r),
+body .glass button:not(.bg-gradient-to-r) span {
+  color: rgb(17 24 39) !important;
+}
+
+html.dark body .glass button:not(.bg-gradient-to-r),
+html.dark body .glass button:not(.bg-gradient-to-r) span {
+  color: rgb(241 245 249) !important;
+}
+
+/* Icon color fixes */
+body svg {
+  color: inherit !important;
+}
+
+html.dark body svg {
+  color: inherit !important;
+}
+
+/* Specific icon fixes for buttons */
+body button svg {
+  color: currentColor !important;
+}
+
+html.dark body button svg {
+  color: currentColor !important;
 }
 
 /* Input field improvements */
@@ -164,9 +270,53 @@ html.dark .input-field:focus {
 }
 
 html.dark .glass {
-  background: rgba(15, 23, 42, 0.7);
-  border: 1px solid rgba(148, 163, 184, 0.3);
-  box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.1);
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid rgba(148, 163, 184, 0.4);
+  box-shadow: 0 8px 32px 0 rgba(59, 130, 246, 0.15);
+}
+
+/* Better glass contrast for dark mode cards */
+html.dark .glass h3,
+html.dark .glass h4,
+html.dark .glass .font-bold,
+html.dark .glass .font-semibold {
+  color: #ffffff !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Parameter display improvements */
+html.dark .glass .text-sm {
+  color: #cbd5e1 !important;
+}
+
+html.dark .glass .text-lg {
+  color: #e2e8f0 !important;
+  font-weight: 600;
+}
+
+/* Step indicator improvements for dark mode */
+html.dark .glass .step-indicator {
+  background: rgba(59, 130, 246, 0.9) !important;
+  border: 2px solid rgba(99, 179, 237, 0.6) !important;
+}
+
+html.dark .glass .step-number {
+  color: white !important;
+  font-weight: 700;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Active step highlighting */
+html.dark .glass .step-active {
+  background: rgba(59, 130, 246, 1) !important;
+  border: 2px solid rgba(147, 197, 253, 0.8) !important;
+  box-shadow: 0 0 20px rgba(59, 130, 246, 0.4) !important;
+}
+
+/* Completed step styling */
+html.dark .glass .step-completed {
+  background: rgba(34, 197, 94, 0.9) !important;
+  border: 2px solid rgba(74, 222, 128, 0.6) !important;
 }
 
 /* Enhanced glass effect for active elements */
