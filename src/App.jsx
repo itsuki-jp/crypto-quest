@@ -1,5 +1,5 @@
 import './App.css'
-import MiniRSAApp from './MiniRSA'
+import MiniRSAApp from './MiniRSARefactored'
 
 function App() {
 
