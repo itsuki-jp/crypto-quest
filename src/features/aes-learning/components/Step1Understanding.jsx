@@ -5,7 +5,6 @@ const Step1Understanding = ({
   setCurrentStep, 
   showSBox,
   setShowSBox,
-  stringToHex,
   SBOX,
   aesOperations
 }) => {
@@ -40,7 +39,7 @@ const Step1Understanding = ({
           <div className="bg-green-50 dark:bg-green-900/20 rounded-2xl p-6">
             <h4 className="text-lg font-semibold mb-3 text-green-800 dark:text-green-200">各ラウンドの4つの操作</h4>
             <ol className="list-decimal list-inside space-y-2 text-gray-700 dark:text-gray-300">
-              {Object.entries(aesOperations).map(([key, desc], index) => (
+              {Object.entries(aesOperations).map(([key, desc]) => (
                 <li key={key}>{desc}</li>
               ))}
             </ol>

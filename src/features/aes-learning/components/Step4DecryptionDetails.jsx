@@ -3,8 +3,6 @@ import { BookOpen, ArrowLeft } from 'lucide-react';
 
 const Step4DecryptionDetails = ({ 
   currentProblem,
-  SBOX,
-  simpleAESDecrypt,
   resetAll,
   setCurrentStep
 }) => {
