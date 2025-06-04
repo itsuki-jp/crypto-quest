@@ -8,7 +8,7 @@ const ModularExponentiationHelper = ({
   c,
   d,
   n,
-  setCalcResult
+  setCalcResult 
 }) => {
   if (!showModExpHelper || !dCorrect) return null;
 

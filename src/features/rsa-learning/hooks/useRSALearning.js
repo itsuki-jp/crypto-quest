@@ -25,7 +25,7 @@ export const useRSALearning = () => {
   const [calcResult, setCalcResult] = useState('');
 
   const [rsaProblem, setRsaProblem] = useState(() => generateRSAProblem());
-  const { p: correctP, q: correctQ, n: _n, e: _e, d: correctD, phi: correctPhi, message: correctMessage, c: _c } = rsaProblem;
+  const { p: correctP, q: correctQ, d: correctD, phi: correctPhi, message: correctMessage } = rsaProblem;
 
   const checkFactors = () => {
     const pNum = parseInt(p);
