@@ -1,7 +1,7 @@
 import React from 'react';
 import { Eye, EyeOff, Book, ChevronDown, ChevronUp } from 'lucide-react';
 
-const EuclideanHelper = ({ showEuclidHelper, setShowEuclidHelper, phi, e }) => {
+const EuclideanHelper = ({ showEuclidHelper, phi, e }) => {
   if (!showEuclidHelper || !phi) return null;
 
   return (
@@ -168,9 +168,8 @@ const Step3KeyCalculation = ({
           <span className="font-medium text-indigo-700 dark:text-indigo-300">🧠 拡張ユークリッド補助</span>
         </button>
 
-        <EuclideanHelper 
+        <EuclideanHelper
           showEuclidHelper={showEuclidHelper}
-          setShowEuclidHelper={setShowEuclidHelper}
           phi={parseInt(phi)}
           e={e}
         />

@@ -15,7 +15,6 @@ const Step3Decryption = ({
   setShowSBox,
   handleEnterKey,
   nextProblem,
-  resetAll,
   SBOX,
   setCurrentStep
 }) => {
