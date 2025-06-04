@@ -2,14 +2,13 @@ import React from 'react';
 import { Hash, ChevronDown, ChevronUp, Sparkles } from 'lucide-react';
 import { modPow } from '../utils/rsaMath.js';
 
-const ModularExponentiationHelper = ({ 
-  showModExpHelper, 
-  setShowModExpHelper, 
-  dCorrect, 
-  c, 
-  d, 
-  n, 
-  setCalcResult 
+const ModularExponentiationHelper = ({
+  showModExpHelper,
+  dCorrect,
+  c,
+  d,
+  n,
+  setCalcResult
 }) => {
   if (!showModExpHelper || !dCorrect) return null;
 
@@ -98,9 +97,8 @@ const Step4Decryption = ({
           <span className="font-medium text-orange-700 dark:text-orange-300">🧮 大きな数の mod 計算ツール</span>
         </button>
 
-        <ModularExponentiationHelper 
+        <ModularExponentiationHelper
           showModExpHelper={showModExpHelper}
-          setShowModExpHelper={setShowModExpHelper}
           dCorrect={dCorrect}
           c={c}
           d={d}

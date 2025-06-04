@@ -127,7 +127,7 @@ export const useAESLearning = () => {
       setCurrentProblemIndex(prev => prev + 1);
       resetCurrentProblem();
     }
-  }, [currentProblemIndex]);
+  }, [currentProblemIndex, resetCurrentProblem]);
 
   // 現在の問題をリセット
   const resetCurrentProblem = useCallback(() => {

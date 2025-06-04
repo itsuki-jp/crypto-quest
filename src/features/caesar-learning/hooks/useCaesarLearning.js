@@ -108,7 +108,7 @@ export const useCaesarLearning = () => {
       setCurrentProblemIndex(prev => prev + 1);
       resetCurrentProblem();
     }
-  }, [currentProblemIndex]);
+  }, [currentProblemIndex, resetCurrentProblem]);
 
   // 前の問題へ
   const previousProblem = useCallback(() => {
@@ -116,7 +116,7 @@ export const useCaesarLearning = () => {
       setCurrentProblemIndex(prev => prev - 1);
       resetCurrentProblem();
     }
-  }, [currentProblemIndex]);
+  }, [currentProblemIndex, resetCurrentProblem]);
 
   // 現在の問題をリセット
   const resetCurrentProblem = useCallback(() => {
