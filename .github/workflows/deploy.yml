@@ -2,7 +2,8 @@ name: Deploy Vite React App to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    # main ブランチは存在しないため master ブランチでトリガー
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
@@ -28,7 +29,9 @@ jobs:
           cache: 'npm'
           
       - name: Install dependencies
-        run: npm ci
+        # `npm ci` fails because package-lock.json is out of sync.
+        # `npm install` updates the lockfile and installs packages.
+        run: npm install
         
       - name: Build
         run: npm run build
