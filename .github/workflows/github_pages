@@ -2,7 +2,8 @@ name: Deploy Vite React App to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    # main ブランチは存在しないため master ブランチでトリガー
+    branches: [ master ]
   workflow_dispatch:
 
 permissions:
