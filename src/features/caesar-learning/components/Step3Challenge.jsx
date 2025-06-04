@@ -23,7 +23,7 @@ export const Step3Challenge = ({
         <div className="w-12 h-12 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-xl flex items-center justify-center">
           <Trophy className="text-white" size={24} />
         </div>
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">ステップ4: 自由チャレンジ</h2>
+        <h2 className="text-3xl font-bold text-gray-900 dark:text-white">ステップ3: 自由チャレンジ</h2>
       </div>
 
       <div className="space-y-6">
