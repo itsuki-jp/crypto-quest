@@ -50,8 +50,7 @@ const simpleAESEncrypt = (plaintext, key) => {
   for (let i = 0; i < Math.min(plaintext.length, 16); i++) {
     const plainChar = plaintext.charCodeAt(i);
     const keyChar = key.charCodeAt(i % key.length);
-    const sboxValue = SBOX[plainChar % 32];
-    const encrypted = (sboxValue ^ keyChar) % 256;
+    const encrypted = plainChar ^ keyChar; // XOR only for consistency with decryption
     result += encrypted.toString(16).padStart(2, '0').toUpperCase();
   }
   return result.padEnd(32, '0');
